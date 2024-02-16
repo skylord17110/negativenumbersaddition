@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addition with Negative Numbers</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+    }
+    #calculation {
+        margin-top: 20px;
+    }
+    p, input, button {
+        font-weight: bold;
+        color: #333; /* Darker font color */
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h2>Addition with Negative Numbers</h2>
+    <p>Enter two numbers and click "Add" to see the result:</p>
+    <p>Positive numbers can be entered as they are. For negative numbers, use the minus sign (-) before the number.</p>
+    <p>Example: -3, -5, -10</p>
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+    <button onclick="addNumbers()">Add</button>
+    <p id="result"></p>
+    <div id="calculation"></div>
+</div>
+
+<script>
+    function addNumbers() {
+        var num1 = parseInt(document.getElementById("num1").value);
+        var num2 = parseInt(document.getElementById("num2").value);
+        var result = num1 + num2;
+        var displayResult = document.getElementById("result");
+        var calculationDiv = document.getElementById("calculation");
+        
+        // Perform step-by-step calculation
+        var calculationSteps = "Step-by-Step Calculation:<br>";
+        calculationSteps += "(" + num1 + ") + (" + num2 + ") = ";
+        
+        // Explanation for each scenario
+        if (num1 < 0 && num2 < 0) {
+            calculationSteps += "Both numbers are negative, so simply add them together and keep the negative sign.";
+        } else if (num1 >= 0 && num2 >= 0) {
+            calculationSteps += "Both numbers are positive, so simply add them together.";
+        } else {
+            var biggerNumber = Math.max(Math.abs(num1), Math.abs(num2));
+            var smallerNumber = Math.min(Math.abs(num1), Math.abs(num2));
+            var sign = (biggerNumber === Math.abs(num1)) ? num1 : num2;
+            var difference = biggerNumber - smallerNumber;
+            calculationSteps += "One number is positive and the other is negative. Subtract the smaller number from the bigger number and keep the sign of the bigger number.";
+        }
+        
+        calculationSteps += " Result: " + result;
+        
+        if (result >= 0) {
+            displayResult.innerHTML = "Result: " + result;
+        } else {
+            displayResult.innerHTML = "Result: " + result + " (Negative)";
+        }
+        
+        calculationDiv.innerHTML = calculationSteps;
+    }
+</script>
+</body>
+</html>
