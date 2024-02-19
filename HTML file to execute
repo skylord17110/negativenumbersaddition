@@ -17,8 +17,6 @@
     }
     #calculation {
         margin-top: 20px;
-    }
-    p, input, button {
         font-weight: bold;
         color: #333; /* Darker font color */
     }
